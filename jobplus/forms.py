@@ -110,3 +110,38 @@ class LoginForm(FlaskForm):
             user = User.query.filter_by(username=self.username_or_email.data).first()
         if user and not user.check_password(field.data):
             raise ValidationError('密码错误')
+
+
+class RegisterComForm(FlaskForm):
+    companyname = StringField('用户名',validators=[Required(message='* 用户名不能为空')])
+    email = StringField('邮箱',validators=[Required(),Email()])
+    password = PasswordField('密码',validators=[Required(),Length(6,24)])
+    repeat_password = PasswordField('重复密码',validators=[Required(),EqualTo('password')])
+    submit = SubmitField('提交')
+
+    def create_company(self):
+        user = User()
+        user.username = self.companyname.data
+        user.email = self.email.data
+        user.password = self.password.data
+        user.role = User.ROLE_COMPANY
+
+        db.session.add(user)
+        db.session.commit()
+
+        company = ComInfo()
+        company.user = user
+
+        db.session.add(company)
+        db.session.commit()
+
+    def validate_companyname(self,field):
+        if User.query.filter_by(username=field.data).first():
+            raise ValidationError("用户名已经存在！")
+        if not re.match(r'^[a-zA-Z0-9]{3,24}$',field.data):
+            raise ValidationError('请输入3至24位字母或数字！')
+
+    def validate_email(self,field):
+        if User.query.filter_by(email=field.data).first():
+            raise ValidationError('邮箱已注册！')
+

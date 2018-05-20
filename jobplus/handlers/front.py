@@ -1,6 +1,6 @@
 import re
 from flask import Blueprint, render_template, url_for, flash, redirect
-from jobplus.forms import LoginForm, RegisterForm
+from jobplus.forms import LoginForm, RegisterForm,RegisterComForm
 from flask_login import login_user
 from jobplus.models import User
 
@@ -10,7 +10,7 @@ front = Blueprint('front', __name__)
 # 首页路由函数
 @front.route('/')
 def index():
-    return render_template('base.html')
+    return render_template('index.html')
 
 
 # 登录视图函数
@@ -38,3 +38,13 @@ def register():
         flash('注册成功，请登录！', 'success')
         return redirect(url_for('.login'))
     return render_template('register.html', form=form)
+
+# 企业注册函数
+@front.route('/registercom',methods=['GET','POST'])
+def register_com():
+    form = RegisterComForm()
+    if form.validate_on_submit():
+        form.create_company()
+        flash('注册成功，请登录！','success')
+        return redirect(url_for('front.login'))
+    return render_template('register_com.html',form=form)

@@ -99,9 +99,9 @@ class ComInfo(Base):
     com_id = db.Column(db.Integer,db.ForeignKey('user.id',ondelete='CASCADE'),primary_key=True)
     user = db.relationship('User',uselist=False,backref=db.backref("company"))
 
-    com_name = db.Column(db.String(128))
-    com_email = db.Column(db.String(64),unique=True,nullable=False)
-    com_phone = db.Column(db.Integer,unique=True)
+    #com_name = db.Column(db.String(128))
+    #com_email = db.Column(db.String(64),unique=True,nullable=False)
+    com_phone = db.Column(db.Integer)
     com_location = db.Column(db.String(128))
     com_logo = db.Column(db.String(128))
     com_web = db.Column(db.String(64))
@@ -109,7 +109,7 @@ class ComInfo(Base):
     com_desc_more = db.Column(db.String(256))
 
     def __repr__(self):
-        return '<Company:{}>'.format(self.com_name)
+        return '<Company:{}>'.format(self.user.username)
 
 
 class UserJob(Base):

@@ -29,16 +29,16 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li><a href="{{ url_for('front.register') }}">用户注册</a></li>
-            <li><a href="/">企业注册</a></li>
+            <li><a href="{{ url_for('front.register_com') }}">企业注册</a></li>
             <li><a href="{{ url_for('front.login') }}">登陆</a></li>
         </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
     </nav>
-<!--    <div class="container-fluid header">
+    <div class="container-fluid header">
         {% block head %}{% endblock %}
     </div>
--->
+
 
     <div class="container">
 
