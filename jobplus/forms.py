@@ -43,10 +43,15 @@ class UserForm(FlaskForm):
     submit = SubmitField('提交')
 
     def set_info(self,user):
-        password = user.password
-        self.populate_obj(user)
-        if not self.password:
-            user.password=password
+        #self.populate_obj(user)
+        user.realname = self.realname.data
+        user.email = self.email.data
+        if self.password.data:
+            user.password=self.password.data
+        user.phone = self.phone.data
+        user.exp = self.exp.data
+        user.resume = self.resume.data
+        
         db.session.add(user)
         db.session.commit()
         return user

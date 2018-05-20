@@ -1,6 +1,6 @@
 <!-- 需要传入2个参数：要渲染的from和点击提交的url -->
-{% macro render_form(form)  %}
-<form method="POST">
+{% macro render_form(form,url)  %}
+<form method="POST" action="{{ url }}">
     <!-- 将 csrf_token渲染在表单开始的位置 -->
     {{ form.csrf_token }}
     <!--迭代每个表单 field -->
