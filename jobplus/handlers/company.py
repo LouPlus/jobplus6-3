@@ -24,7 +24,6 @@ def setdetail():
     form.com_name.data = current_user.username
     form.com_email.data = current_user.email
     
-    
     if form.validate_on_submit():
         form.set_details(current_user,company)
         flash('更新信息成功!','success')
