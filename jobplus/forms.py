@@ -11,19 +11,31 @@ from jobplus.models import User,JobInfo,ComInfo,db
 class CompanyForm(FlaskForm):
     com_name = StringField('企业名称',validators=[Required(),Length(3,24)])
     com_email = StringField('邮箱',validators=[Required(),Email()])
-    #password = StringField('密码',)
+    password = StringField('密码',Length(3,24))
     com_location = StringField('地址',validators=[Required(),Length(1,24)])
     com_logo = StringField('logo链接',validators=[Required(),URL()])
     com_web = StringField('网站链接',validators=[Required(),URL()])
+    com_phone = StringField('手机号码',validators=[Required()])
     com_desc_less = StringField('一句话简介',validators=[Required(),Length(3,48)])
     com_desc_more = StringField('详细介绍',validators=[Required(),Length(3,256)])
     submit = SubmitField('提交')
     
-    def set_details(self,company):
+    def set_details(self,user,company):
         
         # 将表单数据填入数据库映射类对象
-        self.populate_obj(company)
+        user.username = self.com_name.data
+        user.email = self.com_email.data
+        if self.password.data:
+            user.password = self.password.data
+        db.session.add(user)
+        db.commit
         
+        company.com_location = self.com_location.data
+        company.com_logo = self.com_logo.data
+        company.com_web = self.com_web.data
+        company.com_desc_less = self.com_desc_less.data
+        company.com_desc_more = self.com_desc_more.data
+        company.com_phone = self.com_phone.data
         db.session.add(company)
         db.session.commit()
         return company

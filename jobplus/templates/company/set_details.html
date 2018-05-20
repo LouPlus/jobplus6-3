@@ -2,5 +2,7 @@
 {% from "macros.html" import render_form %}
 
 {% block body %}
+<div class="form_container">
 {{ render_form(form,url_for('company.setdetail')) }}
+</div>
 {% endblock %}
