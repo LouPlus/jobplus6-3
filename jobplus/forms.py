@@ -17,7 +17,7 @@ class CompanyForm(FlaskForm):
     com_web = StringField('网站链接',validators=[Required(),URL()])
     com_phone = StringField('手机号码',validators=[Required()])
     com_desc_less = StringField('一句话简介',validators=[Required(),Length(3,48)])
-    com_desc_more = StringField('详细介绍',validators=[Required(),Length(3,256)])
+    com_desc_more = TextAreaField('详细介绍',validators=[Required(),Length(3,256)])
     submit = SubmitField('提交')
 
     
