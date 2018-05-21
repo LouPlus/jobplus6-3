@@ -11,24 +11,43 @@ from jobplus.models import User,JobInfo,ComInfo,db
 class CompanyForm(FlaskForm):
     com_name = StringField('企业名称',validators=[Required(),Length(3,24)])
     com_email = StringField('邮箱',validators=[Required(),Email()])
-    #password = StringField('密码',)
-    com_location = StringField('地址', validators=[Required(), Length(1, 24)])
+    password = StringField('密码(不填保持原密码不变)')
+    com_location = StringField('地址',validators=[Required(),Length(1,24)])
     com_logo = StringField('logo链接',validators=[Required(),URL()])
     com_web = StringField('网站链接',validators=[Required(),URL()])
+    com_phone = StringField('手机号码',validators=[Required()])
     com_desc_less = StringField('一句话简介',validators=[Required(),Length(3,48)])
     com_desc_more = StringField('详细介绍',validators=[Required(),Length(3,256)])
     submit = SubmitField('提交')
 
-    def set_details(self, company):
+    
+    def set_details(self,usr,com):
         # 将表单数据填入数据库映射类对象
-        self.populate_obj(company)
+        usr.username = self.com_name.data
+        usr.email = self.com_email.data
+        if self.password.data:
+            usr.password = self.password.data
         
-        db.session.add(company)
+        db.session.add(usr)
         db.session.commit()
-        return company
+        
+        self.populate_obj(com)
+        com.com_location = self.com_location.data
+        com.com_logo = self.com_logo.data
+        com.com_web = self.com_web.data
+        com.com_desc_less = self.com_desc_less.data
+        com.com_desc_more = self.com_desc_more.data
+        com.com_phone = self.com_phone.data
+        
+        db.session.add(com)
+        db.session.commit()
+        return com
 
-        # 需要验证邮箱唯一性？(需要再添加)
-
+    # 需要验证邮箱唯一性？(需要再添加)
+    # 验证密码长短
+    def validate_password(self,field):
+        if field.data and not re.match(r'^[a-zA-Z0-9]{6,24}$',field.data):
+            raise ValidationError('请输入6至24位字母或者数字!')
 
 class UserForm(FlaskForm):
     realname = StringField('姓名', validators=[Required(), Length(1, 24)])

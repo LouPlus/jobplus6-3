@@ -24,11 +24,13 @@ def index():
 @login_required
 def setdetail():
     # 此处company的id需要从login获取
-    company = ComInfo.query.get_or_404(current_user.id)
-    form = CompanyForm(obj=company)
+    com_tmp = ComInfo.query.get_or_404(current_user.id)
+    form = CompanyForm(obj=com_tmp)
+    form.com_name.data = current_user.username
+    form.com_email.data = current_user.email
     
     if form.validate_on_submit():
-        form.set_details(company)
+        form.set_details(current_user,com_tmp)
         flash('更新信息成功!','success')
         return redirect(url_for('company.index'))
     return render_template('company/set_details.html',form=form)
