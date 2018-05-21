@@ -32,15 +32,13 @@ class CompanyForm(FlaskForm):
         db.session.commit()
         
         self.populate_obj(com)
-        '''
         com.com_location = self.com_location.data
         com.com_logo = self.com_logo.data
         com.com_web = self.com_web.data
         com.com_desc_less = self.com_desc_less.data
         com.com_desc_more = self.com_desc_more.data
         com.com_phone = self.com_phone.data
-        '''
-        print(com.com_phone)
+        
         db.session.add(com)
         db.session.commit()
         return com
