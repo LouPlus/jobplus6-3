@@ -63,7 +63,7 @@ class User(Base,UserMixin):
 
     @property
     def is_company(self):
-        return self.role == self.ROLE_STAFF
+        return self.role == self.ROLE_COMPANY
 
 
 class JobInfo(Base):

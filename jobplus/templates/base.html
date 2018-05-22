@@ -39,7 +39,7 @@
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="{% if current_user.iscompany %}{{ url_for('company.setdetail') }} {% else %} {{ url_for('user.setinfo') }} {% endif %}">修改信息</a></li>
+                    <li><a href="{% if current_user.is_company %} {{ url_for('company.setdetail') }} {% else %} {{ url_for('user.setinfo') }} {% endif %}">修改信息</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="#">退出登录</a></li>
                 </ul>
