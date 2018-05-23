@@ -14,3 +14,10 @@ def index():
         error_out=False
     )
     return render_template('job/index.html', pagination=pagination, active='jobs')
+
+
+# 职位详情
+@job.route('/<int:job_id>')
+def job_details():
+    cjob = Job.query.filter(Job.job_id == job_id)
+    return render_tempalte('job/details.html',cjob=cjob)

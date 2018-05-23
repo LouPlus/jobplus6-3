@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}
+Job - {{ cjob.title }}
+{% endblock %}
+
+{% block body %}
+<div class="jumbotron">
+    <h2>{{ cjob.title }}</h2>
+    <p> 薪酬: {{ cjob.low_salary }}-{{ cjob.high_salary }}</p>
+</div>
+
+<div>
+    <div class="row">
+        <div class="col-md-8">
+            <!-- 职位信息 -->
+            <h3>职位要求</h3>
+                <div><span>{{}}</span></div>
+            <h3>职位描述</h3>
+                <div><span>{{ cjob.desc }}</span></div>
+            
+        </div>
+        <div class="col-md-4">
+            <!-- 公司信息 -->
+        </div>
+    </div>
+</div>
+
+{% endblock %}
