@@ -35,5 +35,7 @@ def setdetail():
         return redirect(url_for('company.index'))
     return render_template('company/set_details.html',form=form)
 
-
-
+@company.route('/<int:company_id>')
+def details(company_id):
+    company = ComInfo.query.get_or_404(company_id)
+    return render_template('company/details.html',company=company)

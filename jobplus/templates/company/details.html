@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}
+Company-{{ company.user.username }}
+{% endblock %}
+
+{% block body %}
+<div class="company-detail_base">
+    <!-- 企业基本信息部分 -->
+    <div class="container">
+        <div class="row mt30 mb30">
+            <div class="col-md-2 col-sm-3">
+                <div class="img-warp">
+                    <img width="100%" src="{{ company.com_logo }}">
+                </div>
+            </div>
+            <div class="col-md-7 col-sm-7">
+                <h3>{{ company.user.username }}</h3>
+                <p class="company-desc ellipsis text-muted">{{ company.com_desc_less }}</p>
+                <ul class="list-inline m10 mb0 company-detail-mod-base-info_tags">
+                        <li>标签字段待添加</li>
+                </ul>
+            </div>
+        </div>
+    
+    </div>
+</div>
+
+<hr>
+
+<!--中间菜单栏 -->
+<div class="menu">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <ul class="nav nav-tabs nav-tabs-details">
+                    <li>
+                    <a>企业主页</a>
+                    </li>
+                    <li>
+                    <a>招聘职位</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="company-info_details">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9"></div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+
+
+
+</div>
+
+{% endblock %}
