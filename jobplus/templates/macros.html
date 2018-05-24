@@ -71,7 +71,7 @@
     <div class="col-sm-6 col-md-4">
         <div class="job-box">
             <div class="caption">
-                <a href="#">
+                <a href="{{ job.job_id }}">
                     <b>{{ job.title }}</b> <span class="timesince">[{{ job.updated_at | get_jobdelta }}天前]</span>
                     <p>经验{{ job.exp }}年 学历{{ job.degree }} 薪资范围:{{ job.low_salary }}-{{ job.high_salary }}</p>
                     {% for tag in job.tags.split(",") %}

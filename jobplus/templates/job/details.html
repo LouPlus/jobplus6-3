@@ -7,21 +7,41 @@ Job - {{ cjob.title }}
 {% block body %}
 <div class="jumbotron">
     <h2>{{ cjob.title }}</h2>
-    <p> 薪酬: {{ cjob.low_salary }}-{{ cjob.high_salary }}</p>
+    <p> 钖叕: {{ cjob.low_salary }}-{{ cjob.high_salary }}</p>
+    <p>鏍囩锛歿{ cjob.tags }}</p>
 </div>
 
 <div>
     <div class="row">
         <div class="col-md-8">
-            <!-- 职位信息 -->
-            <h3>职位要求</h3>
-                <div><span>{{}}</span></div>
-            <h3>职位描述</h3>
-                <div><span>{{ cjob.desc }}</span></div>
-            
+            <!-- 鑱屼綅淇℃伅 -->
+            <h3>鑱屼綅瑕佹眰</h3>
+                <div>
+                    <span>瀛﹀巻锛歿{cjob.degree}}</span>
+                    <span>宸ヤ綔缁忛獙锛歿{cjob.exp}}</span>
+                    <span></span>
+                </div>
+            <h3>鑱屼綅鎻忚堪</h3>
+                <div>宸ヤ綔鍦扮偣锛歿{ cjob.work_place }}</div>
+                <div><span>璇︽儏锛歿{ cjob.desc }}</span></div> 
         </div>
         <div class="col-md-4">
-            <!-- 公司信息 -->
+            <!-- 鍏徃淇℃伅 -->
+            <h3>鍏徃淇℃伅</h3>
+                <div class="media">
+                    
+                    <div class="media-left">
+                        <img width=64 height=64 class="media-object" src="{{ cjob.company.com_logo}}" alt="64x64">
+                    </div>
+
+                    <div class="media-body">
+                        <h4 class="media-heading">
+                            {{ cjob.company.user.username }}
+                        </h4>
+                        <p>{{ cjob.company.com_desc_less }}</p>
+                    </div>
+                
+                </div>
         </div>
     </div>
 </div>
