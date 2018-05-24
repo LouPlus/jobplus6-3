@@ -1,0 +1,20 @@
+{% extends "company/details.html" %}
+{% from "macros.html" import render_job %}
+
+{% block active %}
+    <li>
+        <a href="{{ url_for('company.details',company_id=c_company.com_id) }}">企业主页</a>
+    </li>
+    <li class="active">
+        <a href="{{ url_for('company.dt_jobs',company_id=c_company.com_id) }}">招聘职位</a>
+    </li>
+{% endblock %}
+
+{% block info %}
+    <h4>招聘职位</h4>
+    <ul>
+        {% for i in c_company.job %}
+        <li>{{ render_job(i)}}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
