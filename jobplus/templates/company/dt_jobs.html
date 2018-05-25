@@ -11,10 +11,19 @@
 {% endblock %}
 
 {% block info %}
-    <h4>招聘职位</h4>
     <ul>
-        {% for i in c_company.job %}
-        <li>{{ render_job(i)}}</li>
-        {% endfor %}
+        <div class="container-fluid">
+            <div class="row">
+            {% for i in c_company.job %}
+            <div class="col-md-6">
+            <li>
+                <h4><a href="{{ url_for('jobs.job_details',job_id=i.job_id) }}">{{ i.title }}</a></h4>
+                <p>地点：{{ i.work_place }}</p>
+                <p>待遇：{{ i.low_salary}}-{{ i.high_salary }}</p>
+            </li>
+            </div>
+            {% endfor %}
+            </div>
+        </div>
     </ul>
 {% endblock %}
