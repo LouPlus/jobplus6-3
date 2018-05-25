@@ -5,27 +5,34 @@ Job - {{ cjob.title }}
 {% endblock %}
 
 {% block body %}
-<div class="jumbotron">
-    <h2>{{ cjob.title }}</h2>
-    <p> 薪酬: {{ cjob.low_salary }}-{{ cjob.high_salary }}</p>
-    <p>标签：{{ cjob.tags }}</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9 col-xs-12">
+            <div>
+            <img width=64 height=64 class="media-object" src="{{ cjob.company.com_logo}}" alt="64x64">
+            </div>
+            <div>
+            <h2>{{ cjob.title }}</h2>
+            <p> 薪酬: {{ cjob.low_salary }}-{{ cjob.high_salary }}</p>
+            <p>学历：{{cjob.degree}}</p>
+            <p>工作经验：{{cjob.exp}}年</p>
+            <p>标签：{{ cjob.tags }}</p>
+            </div>
+            <hr>
+        </div>
+    </div>
 </div>
 
 <div>
+    <div class="container">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-9">
             <!-- 职位信息 -->
-            <h3>职位要求</h3>
-                <div>
-                    <span>学历：{{cjob.degree}}</span>
-                    <span>工作经验：{{cjob.exp}}</span>
-                    <span></span>
-                </div>
             <h3>职位描述</h3>
                 <div>工作地点：{{ cjob.work_place }}</div>
                 <div><span>详情：{{ cjob.desc }}</span></div> 
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <!-- 公司信息 -->
             <h3>公司信息</h3>
                 <div class="media">
@@ -44,6 +51,10 @@ Job - {{ cjob.title }}
                 </div>
         </div>
     </div>
+    
+    
+    </div>
+    <button class="btn btn-default"><a>投递申请</a></button>
 </div>
 
 {% endblock %}
