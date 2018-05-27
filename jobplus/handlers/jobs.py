@@ -24,7 +24,10 @@ def index():
 def job_details(job_id):
     # cjob = Job.query.filter(Job.job_id == job_id)
     cjob = Job.query.get_or_404(job_id)
-    deliv = UserJob.query.filter(UserJob.user_id == current_user.id, UserJob.job_id == job_id).first()
+    if current_user.is_authenticated:
+        deliv = UserJob.query.filter(UserJob.user_id == current_user.id, UserJob.job_id == job_id).first()
+    else:
+        deliv = ""
     if deliv:
         print('delivery id:%s' % deliv.uj_id)
     return render_template('job/details.html', cjob=cjob, d=deliv)

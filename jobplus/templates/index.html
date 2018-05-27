@@ -34,15 +34,20 @@
     <ul class="nav nav-tabs list-title">
         <li role="presentation" class="active"><a href="#">最新公司</a></li>
       </ul>
-    <div class="new-company-list">
+    <div class="row new-company-list">
         {% for cominfo in com_pagination.items %}
 		<div class="col-sm-6 col-md-4 company">
 			<div class="thumbnail">
                 <a href="{{ url_for('company.index') }}{{ cominfo.com_id }}" target="-blank">
-					<img width=128 height=128 src="{{ cominfo.com_logo }}" alt="company photo" />
-					<div class="caption">
-						<h4>{{ cominfo.com_desc_less }}</h4>
-					</div>
+                    <div class="row">
+                        <div class="col-md-6">
+					    <img width=128 height=128 src="{{ cominfo.com_logo }}" alt="company photo">
+                        </div>
+                        <div class="col-md-6">
+                            <h3 class="media-heading com_name">{{ cominfo.user.username }}</h3>
+						    <h5 class="com_desc">{{ cominfo.com_desc_less }}</h5>
+					    </div>
+                    </div>
 				</a>
 			</div>
 		</div>

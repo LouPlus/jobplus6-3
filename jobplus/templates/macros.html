@@ -72,7 +72,10 @@
         <div class="job-box">
             <div class="caption">
                 <a href="{{ url_for('jobs.index') }}{{ job.job_id }}">
-                    <b>{{ job.title }}</b> <span class="timesince">[{{ job.updated_at | get_jobdelta }}天前]</span>
+                    <div class="job_name">{{ job.title }}</div> 
+                    <div>
+                    <span class="timesince">[{{ job.updated_at | get_jobdelta }}天前]</span>
+                    </div>
                     <p>经验{{ job.exp }}年 学历{{ job.degree }} 薪资范围:{{ job.low_salary }}-{{ job.high_salary }}</p>
                     {% for tag in job.tags.split(",") %}
                         <span class="label label-default">{{ tag }}</span>
@@ -90,7 +93,7 @@
                     <a href="{{ url_for('company.index') }}{{ job.comp_id }}">
                         <h4 class="media-heading">{{ job.company.user.username }}</h4>
                     </a>
-                    <span class="company-meta">None/None/{{ job.company.com_location }}</span>
+                    <span class="company-meta com_loc">{{ job.company.com_location }}</span>
                 </div>
             </div>
         </div>

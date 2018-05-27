@@ -4,6 +4,7 @@ from flask import Blueprint, render_template, flash, redirect, url_for, request,
 from jobplus.forms import CompanyForm
 from jobplus.models import ComInfo
 from flask_login import login_required, current_user
+from jobplus.decorators import company_required
 
 company = Blueprint('company', __name__, url_prefix='/company')
 
@@ -22,6 +23,7 @@ def index():
 
 @company.route('/profile',methods=['GET','POST'])
 @login_required
+@company_required
 def setdetail():
     # 此处company的id需要从login获取
     com_tmp = ComInfo.query.get_or_404(current_user.id)
